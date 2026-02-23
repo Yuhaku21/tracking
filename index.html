@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AO Tracking</title>
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="header">
+            AO Tracking
+        </div>
+
+        <div class="content">
+
+            <div class="welcome">
+                <h2>Halo Selamat Datang</h2>
+                <h2 id="username">Nama_User</h2>
+                <p>Selamat Siang</p>
+            </div>
+
+            <!-- MAP -->
+            <div id="map"></div>
+
+            <!-- MENU -->
+            <div class="menu-grid">
+
+                <div class="menu-item" onclick="alert('Tugas Saya')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png">
+                    <p>Tugas Saya</p>
+                </div>
+
+                <div class="menu-item" onclick="alert('Tracking History')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
+                    <p>Tracking History</p>
+                </div>
+
+                <div class="menu-item" onclick="alert('Catatan')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png">
+                    <p>Catatan</p>
+                </div>
+
+                <div class="menu-item" onclick="alert('Informasi')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
+                    <p>Informasi</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
