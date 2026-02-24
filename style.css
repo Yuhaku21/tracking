@@ -1,97 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #eef2f7;
+    display: flex;
+    justify-content: center;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #eef2f7;
-            display: flex;
-            justify-content: center;
-        }
+/* APP CONTAINER */
+.app {
+    width: 390px;
+    background: #f8fafc;
+    min-height: 100vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
 
-        /* APP CONTAINER */
-        .app {
-            width: 390px;
-            background: #f8fafc;
-            min-height: 100vh;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-radius: 20px;
-            overflow: hidden;
-        }
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #134686, #1a5fb4);
+    color: white;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
 
-        /* HEADER */
-        .header {
-            background: linear-gradient(135deg, #134686, #1a5fb4);
-            color: white;
-            padding: 20px;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: .5px;
-        }
+/* CONTENT */
+.content {
+    padding: 20px;
+}
 
-        /* CONTENT */
-        .content {
-            padding: 20px;
-        }
+/* WELCOME */
+.welcome {
+    margin-bottom: 15px;
+}
 
-        /* WELCOME */
-        .welcome {
-            margin-bottom: 15px;
-        }
+.welcome h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
 
-        .welcome h2 {
-            font-size: 20px;
-            font-weight: 600;
-        }
+.welcome p {
+    color: #7b8794;
+    font-size: 14px;
+    margin-top: 4px;
+}
 
-        .welcome p {
-            color: #7b8794;
-            font-size: 14px;
-            margin-top: 4px;
-        }
+/* MAP */
+#map {
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
+}
 
-        /* MAP */
-        #map {
-            height: 220px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            margin: 20px 0;
-        }
+/* MENU GRID */
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
 
-        /* MENU GRID */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
+/* MENU ITEM */
+.menu-item {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: .25s;
+}
 
-        /* MENU ITEM */
-        .menu-item {
-            background: white;
-            border-radius: 16px;
-            padding: 22px;
-            text-align: center;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
-            cursor: pointer;
-            transition: .25s;
-        }
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
 
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
+.menu-item img {
+    width: 42px;
+    margin-bottom: 12px;
+}
 
-        .menu-item img {
-            width: 42px;
-            margin-bottom: 12px;
-        }
+.menu-item p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+}
 
-        .menu-item p {
-            font-size: 14px;
-            font-weight: 500;
-            color: #334155;
-        }
+.card-custom {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eaeaea;
+    transition: 0.3s ease;
+}
+
+.card-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card-custom .card-body {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.card-custom p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
