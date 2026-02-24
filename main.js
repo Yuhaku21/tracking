@@ -98,9 +98,6 @@ function finalizeLocation() {
 
     marker.bindPopup(`
         <b>Lokasi Anda</b><br>
-        Lat: ${avgLat.toFixed(6)}<br>
-        Lng: ${avgLng.toFixed(6)}<br>
-        Akurasi Terbaik: ±${Math.round(bestAccuracy)} meter
     `).openPopup();
 
     loadingModal.hide(); // 🔥 tutup modal setelah selesai
