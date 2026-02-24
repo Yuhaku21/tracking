@@ -120,3 +120,8 @@ body {
     font-weight: 600;
     color: #333;
 }
+.modal-dialog {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
