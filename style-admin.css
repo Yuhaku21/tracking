@@ -1,0 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #eef2f7;
+    display: flex;
+    justify-content: center;
+}
+
+/* APP CONTAINER */
+.app {
+    width: 390px;
+    background: #f8fafc;
+    min-height: 100vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
