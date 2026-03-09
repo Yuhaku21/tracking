@@ -1,3 +1,13 @@
+<?php
+require '../middleware/auth_admin.php';
+require '../config/koneksi.php'; // koneksi database
+
+$sql = "SELECT COUNT(*) as total_staff FROM users WHERE role='staff'";
+$stmt = $pdo->query($sql);
+$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$total_staff = $data['total_staff'];
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -20,7 +30,7 @@
         <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
             <i class="bi bi-list"></i>
         </button>
-        <span class="fw-bold">Dashboard Admin</span>
+        <span class="fw-bold"><p>Selamat datang <?= $_SESSION['nama']; ?></p></span>
     </nav>
 
     <!-- Sidebar Offcanvas -->
@@ -38,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="data-ao.php">
                         <i class="bi bi-person-badge me-2"></i> Data AO
                     </a>
                 </li>
@@ -61,7 +71,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-muted">Total AO</h6>
-                            <h2 class="fw-bold">25</h2>
+                            <h2 class="fw-bold"><?= $total_staff ?></h2>
                         </div>
                         <i class="bi bi-person-badge card-icon text-primary"></i>
                     </div>

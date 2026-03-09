@@ -1,3 +1,6 @@
+<?php
+require 'middleware/auth_staff.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -97,6 +100,21 @@
                                     <h6 class="mb-1" style="font-size: 14px;"><i class="bi bi-android"></i> Versi
                                         Aplikasi
                                         1.0.0</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!--Menu Logout-->
+            <a href="/auth/logout.php" style="text-decoration: none;">
+                <div class="mt-3">
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-body py-3 px-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Nama -->
+                                <div>
+                                    <h6 class="mb-1" style="font-size: 14px;"><i class="bi bi-box-arrow-right"></i> Logout</h6>
                                 </div>
                             </div>
                         </div>

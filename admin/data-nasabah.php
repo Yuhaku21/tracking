@@ -77,7 +77,7 @@
             </thead>
             <tbody>
                 <tr>
-                    
+
                     <td>Muhammad Jokowi</td>
                     <td>
                         <a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
@@ -86,7 +86,7 @@
                     </td>
                 </tr>
                 <tr>
-                  
+
                     <td>Asep Sunardin</td>
                     <td>
                         <a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
@@ -95,7 +95,7 @@
                     </td>
                 </tr>
                 <tr>
-                    
+
                     <td>Farhan Indra</td>
                     <td>
                         <a href="" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
@@ -105,6 +105,11 @@
                 </tr>
             </tbody>
         </table>
+
+        <!--Footer-->
+        <footer class="fixed-bottom text-center">
+            <p style="color: grey;">Aplikasi Versi 1.0.0</p>
+        </footer>
 
     </div>
 

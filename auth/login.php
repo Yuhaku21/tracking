@@ -7,7 +7,7 @@
     <title>Login Admin Master</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -18,22 +18,24 @@
         <div class="content mt-4">
             <div class="main-content">
                 <!--Logo Damara-->
-                <img src="logo border damara.jpg" alt="">
+                <img src="" alt="">
                 <!--Logo Damara-->
                 <h5 class="text-center mb-3 mt-3"><b>Selamat Datang di Portal Damara AO Tracking</b></h5>
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">Masuk</button>
-                        </div>
+                        <form action="proses_login.php" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Nama Staff</label>
+                                <input type="text" class="form-control" name="nama" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="submit">Masuk</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
