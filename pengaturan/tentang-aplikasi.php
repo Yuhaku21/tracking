@@ -35,21 +35,23 @@ require '../middleware/auth_staff.php';
             <!--CTA Breadcrumb-->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/pengaturan.html">Pengaturan</a></li>
+                    <li class="breadcrumb-item"><a href="../pengaturan/pengaturan.php">Pengaturan</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tentang Aplikasi</li>
                 </ol>
             </nav>
 
             <!--MainContent-->
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolor odit facilis ab commodi suscipit facere placeat quia est delectus fugiat debitis veniam sapiente ipsam quod dolorem, non quos tempora.
-    </div>
+            <p>
+                AO Tracking adalah aplikasi digital yang digunakan untuk memonitor kinerja dan pergerakan Account Officer di lapangan, sehingga memudahkan manajemen dalam melakukan pengawasan dan evaluasi kerja.
+            </p>
+        </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+        <script src="main.js"></script>
 
 </body>
 

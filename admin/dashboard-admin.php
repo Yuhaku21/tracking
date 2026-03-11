@@ -48,12 +48,12 @@ $total_staff = $data['total_staff'];
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="data-ao.php">
+                    <a class="nav-link" href="../admin/data-ao.php">
                         <i class="bi bi-person-badge me-2"></i> Data AO
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="../admin/data-nasabah.php">
                         <i class="bi bi-people me-2"></i> Data Nasabah
                     </a>
                 </li>

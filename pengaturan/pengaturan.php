@@ -35,13 +35,13 @@ require '../middleware/auth_staff.php';
             <!--CTA Breadcrumb-->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Pengaturan</li>
                 </ol>
             </nav>
             <!--Menu Pengaturan-->
             <!--Tentang Aplikasi-->
-            <a href="../pengaturan/tentang-aplikasi.html" style="text-decoration: none;">
+            <a href="../pengaturan/tentang-aplikasi.php" style="text-decoration: none;">
                 <div class="mt-3">
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body py-3 px-4">

@@ -35,7 +35,7 @@ require '../middleware/auth_staff.php';
             <!--CTA Breadcrumb-->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/pengaturan.html">Pengaturan</a></li>
+                    <li class="breadcrumb-item"><a href="../pengaturan/pengaturan.php">Pengaturan</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Pengajuan Kendala</li>
                 </ol>
             </nav>
