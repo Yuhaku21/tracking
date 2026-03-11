@@ -1,5 +1,5 @@
 <?php
-require 'middleware/auth_staff.php';
+require '../middleware/auth_staff.php';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -15,7 +15,7 @@ require 'middleware/auth_staff.php';
         rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -41,7 +41,7 @@ require 'middleware/auth_staff.php';
             </nav>
             <!--Menu Pengaturan-->
             <!--Tentang Aplikasi-->
-            <a href="/pengaturan/tentang-aplikasi.html" style="text-decoration: none;">
+            <a href="../pengaturan/tentang-aplikasi.html" style="text-decoration: none;">
                 <div class="mt-3">
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body py-3 px-4">
@@ -57,7 +57,7 @@ require 'middleware/auth_staff.php';
                 </div>
             </a>
             <!--Pengajuan Kendala-->
-            <a href="/pengaturan/pengajuan-kendala.html" style="text-decoration: none;">
+            <a href="../pengaturan/pengajuan-kendala.php" style="text-decoration: none;">
                 <div class="mt-3">
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body py-3 px-4">
@@ -73,7 +73,7 @@ require 'middleware/auth_staff.php';
                 </div>
             </a>
             <!--Hubungi Kami-->
-            <a href="/pengaturan/hubungi-staff.html" style="text-decoration: none;">
+            <a href="../pengaturan/hubungi-staff.php" style="text-decoration: none;">
                 <div class="mt-3">
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body py-3 px-4">
@@ -107,7 +107,7 @@ require 'middleware/auth_staff.php';
                 </div>
             </a>
             <!--Menu Logout-->
-            <a href="/auth/logout.php" style="text-decoration: none;">
+            <a href="../auth/logout.php" style="text-decoration: none;">
                 <div class="mt-3">
                     <div class="card shadow-sm border-0 rounded-3">
                         <div class="card-body py-3 px-4">

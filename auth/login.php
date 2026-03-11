@@ -7,7 +7,7 @@
     <title>Login Admin Master</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -18,9 +18,9 @@
         <div class="content mt-4">
             <div class="main-content">
                 <!--Logo Damara-->
-                <img src="" alt="">
+                <img src="../asset/logo border damara.jpg" alt="" style="margin: auto; justify-content:center; align-items:center; display:flex;" class="mb-3">
                 <!--Logo Damara-->
-                <h5 class="text-center mb-3 mt-3"><b>Selamat Datang di Portal Damara AO Tracking</b></h5>
+                <h5 class="text-center mb-3 mt-4"><b>Masuk</b></h5>
                 <div class="card">
                     <div class="card-body">
                         <form action="proses_login.php" method="post">

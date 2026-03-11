@@ -1,3 +1,6 @@
+<?php
+require '../middleware/auth_staff.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -12,7 +15,7 @@
         rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 

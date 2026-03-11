@@ -61,28 +61,28 @@ require 'middleware/auth_staff.php';
             <!-- MENU -->
             <div class="menu-grid">
 
-                <a href="task.html" style="text-decoration: none;">
+                <a href="../tracking/staff/task.html" style="text-decoration: none;">
                     <div class="menu-item" style="text-decoration: none;">
                         <p style="font-size: 30px; ">📝</p>
                         <p>Tugas Saya</p>
                     </div>
                 </a>
 
-                <a href="history.html" style="text-decoration: none;">
+                <a href="../tracking/staff/history.html" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">📍</p>
                         <p>History</p>
                     </div>
                 </a>
 
-                <a href="catatan.html" style="text-decoration: none;">
+                <a href="../tracking/staff/catatan.html" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">📌</p>
                         <p>Catatan</p>
                     </div>
                 </a>
 
-                <a href="pengaturan.php" style="text-decoration: none;">
+                <a href="../tracking/pengaturan/pengaturan.php" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">⚙</p>
                         <p>Pengaturan</p>

@@ -1,3 +1,6 @@
+<?php
+require '../middleware/auth_staff.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -12,7 +15,7 @@
         rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -40,6 +43,7 @@
             <!--MainContent-->
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolor odit facilis ab commodi suscipit facere placeat quia est delectus fugiat debitis veniam sapiente ipsam quod dolorem, non quos tempora.
     </div>
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
