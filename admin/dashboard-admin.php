@@ -2,11 +2,20 @@
 require '../middleware/auth_admin.php';
 require '../config/koneksi.php'; // koneksi database
 
+// Hitung total AO
 $sql = "SELECT COUNT(*) as total_staff FROM users WHERE role='staff'";
 $stmt = $pdo->query($sql);
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $total_staff = $data['total_staff'];
+
+//Hitung total Nasabah
+$sql = "SELECT COUNT(*) as total_nasabah FROM nasabah ";
+$stmt = $pdo->query($sql);
+$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$total_nasabah = $data['total_nasabah'];
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -43,7 +52,7 @@ $total_staff = $data['total_staff'];
         <div class="offcanvas-body">
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link active" href="../admin/dashboard-admin.php">
                         <i class="bi bi-house-door me-2"></i> Dashboard
                     </a>
                 </li>
@@ -55,6 +64,11 @@ $total_staff = $data['total_staff'];
                 <li class="nav-item mb-2">
                     <a class="nav-link" href="../admin/data-nasabah.php">
                         <i class="bi bi-people me-2"></i> Data Nasabah
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="../auth/logout.php">
+                        <i class="bi bi-box-arrow-left"></i> Logout
                     </a>
                 </li>
             </ul>
@@ -84,7 +98,7 @@ $total_staff = $data['total_staff'];
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-muted">Total Nasabah</h6>
-                            <h2 class="fw-bold">1,240</h2>
+                            <h2 class="fw-bold"><?= $total_nasabah ?></h2>
                         </div>
                         <i class="bi bi-people card-icon text-success"></i>
                     </div>

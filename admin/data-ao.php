@@ -78,18 +78,23 @@ if (isset($_POST['hapus'])) {
         <div class="offcanvas-body">
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a class="nav-link active" href="dashboard-admin.php">
+                    <a class="nav-link active" href="../admin/dashboard-admin.php">
                         <i class="bi bi-house-door me-2"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="../admin/data-ao.php">
                         <i class="bi bi-person-badge me-2"></i> Data AO
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="data-nasabah.php">
+                    <a class="nav-link" href="../admin/data-nasabah.php">
                         <i class="bi bi-people me-2"></i> Data Nasabah
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="../auth/logout.php">
+                        <i class="bi bi-box-arrow-left"></i> Logout
                     </a>
                 </li>
             </ul>

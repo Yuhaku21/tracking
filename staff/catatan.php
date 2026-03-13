@@ -12,7 +12,7 @@
         rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>

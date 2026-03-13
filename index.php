@@ -28,7 +28,6 @@ require 'middleware/auth_staff.php';
         <div class="content">
 
             <!-- Modal Loading -->
-            <!-- Modal Loading -->
             <div class="modal fade" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content border-0 shadow-lg rounded-4">
@@ -61,7 +60,7 @@ require 'middleware/auth_staff.php';
             <!-- MENU -->
             <div class="menu-grid">
 
-                <a href="../tracking/staff/task.html" style="text-decoration: none;">
+                <a href="../tracking/staff/task.php" style="text-decoration: none;">
                     <div class="menu-item" style="text-decoration: none;">
                         <p style="font-size: 30px; ">📝</p>
                         <p>Tugas Saya</p>
@@ -75,7 +74,7 @@ require 'middleware/auth_staff.php';
                     </div>
                 </a>
 
-                <a href="../tracking/staff/catatan.html" style="text-decoration: none;">
+                <a href="../tracking/staff/test-catatan.php" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">📌</p>
                         <p>Catatan</p>
