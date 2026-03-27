@@ -132,7 +132,7 @@ $statusList = $pdo->query("SELECT DISTINCT status FROM nasabah")->fetchAll();
                                 </span>
                             </div>
 
-                            <a href="detail-nasabah.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">
+                            <a href="detail-task.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">
                                 Detail
                             </a>
 

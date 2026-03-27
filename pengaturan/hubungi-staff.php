@@ -24,7 +24,7 @@ require '../middleware/auth_staff.php';
     <div class="app">
         <div class="header">
             <h3 style="font-size: 16px;">Damara Tracking Mobile</h3>
-        </div>
+        </div>>
 
         <div class="content">
             <!--HeroSection-->

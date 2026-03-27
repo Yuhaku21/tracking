@@ -106,6 +106,11 @@ $staff = $stmt->fetchAll();
             </div>
         </div>
 
+          <!--Footer-->
+        <footer class="fixed-bottom text-center">
+            <p style="color: grey;">Aplikasi Versi 1.0.0</p>
+        </footer>
+
 
     </div>
 
