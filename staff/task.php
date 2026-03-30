@@ -1,5 +1,6 @@
 <?php
 include '../config/koneksi.php';
+session_start();
 
 // TAMBAH DATA
 if (isset($_POST['simpan'])) {
@@ -36,9 +37,26 @@ $statusList = $pdo->query("SELECT DISTINCT status FROM nasabah")->fetchAll();
 
 
 
+// ambil user login
+$user_id = $_SESSION['user_id'] ?? 0;
 
+// default biar tidak error
+$selesaiHariIni = [];
 
-// Pagination
+if ($user_id) {
+    $stmtSelesai = $pdo->prepare("
+        SELECT nasabah_id 
+        FROM progress_tugas 
+        WHERE user_id = ? 
+        AND DATE(created_at) = CURDATE()
+    ");
+
+    $stmtSelesai->execute([$user_id]);
+
+    $selesaiHariIni = $stmtSelesai->fetchAll(PDO::FETCH_COLUMN) ?: [];
+}
+
+// Pagination (Next fitur aja lah anjeeeng cape banyak bug😭)
 
 ?>
 
@@ -132,9 +150,19 @@ $statusList = $pdo->query("SELECT DISTINCT status FROM nasabah")->fetchAll();
                                 </span>
                             </div>
 
-                            <a href="detail-task.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">
-                                Detail
-                            </a>
+                            <?php if (in_array($d['id'], $selesaiHariIni ?? [])) { ?>
+
+                                <button class="btn btn-secondary btn-sm" disabled>
+                                    ✔ Selesai
+                                </button>
+
+                            <?php } else { ?>
+
+                                <a href="detail-task.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">
+                                    Detail
+                                </a>
+
+                            <?php } ?>
 
                         </div>
                     </div>
