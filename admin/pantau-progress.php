@@ -95,7 +95,6 @@ $dataProgress = $stmt->fetchAll();
 
                     <thead class="table">
                         <tr>
-                            <th>No</th>
                             <th>Nama User</th>
                             <th>Nama Nasabah</th>
                             <th>Tanggal</th>
@@ -111,7 +110,7 @@ $dataProgress = $stmt->fetchAll();
                             foreach ($dataProgress as $row): ?>
 
                                 <tr>
-                                    <td><?= $no++ ?></td>
+                                    
                                     <td><?= htmlspecialchars($row['nama_user'] ?? '-') ?></td>
                                     <td><?= htmlspecialchars($row['nama_nasabah'] ?? '-') ?></td>
                                     <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>

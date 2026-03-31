@@ -67,14 +67,14 @@ require 'middleware/auth_staff.php';
                     </div>
                 </a>
 
-                <a href="../tracking/staff/history.html" style="text-decoration: none;">
+                <a href="../tracking/staff/history.php" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">📍</p>
                         <p>History</p>
                     </div>
                 </a>
 
-                <a href="../tracking/staff/test-catatan.php" style="text-decoration: none;">
+                <a href="../tracking/staff/catatan.php" style="text-decoration: none;">
                     <div class="menu-item">
                         <p style="font-size: 30px;">📌</p>
                         <p>Catatan</p>

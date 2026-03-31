@@ -62,7 +62,7 @@ $data = $stmt->fetchAll();
         <div class="content">
             <!--HeroSection-->
             <div class="welcome">
-                <h2 id="username">Catatan</h2>
+                <h2 id="username">Buat Catatan</h2>
             </div>
 
             <!--CTA Breadcrumb-->
@@ -73,51 +73,20 @@ $data = $stmt->fetchAll();
                 </ol>
             </nav>
             <!--Main Content-->
-            <a href="buat-catatan.php" class="btn btn-primary" style="font-size: 12px;">Buat Catatan Baru</a>
-            <!--Data Dummy-->
-            <div class="mt-3">
-                <?php if (count($data) > 0): ?>
-                    <?php foreach ($data as $row): ?>
-                        <div class="card shadow-sm border-0 rounded-3 mb-3">
-                            <div class="card-body py-3 px-4">
+            <!-- FORM TAMBAH -->
+            <form method="POST" class="mb-4">
 
-                                <div class="d-flex justify-content-between align-items-start">
+                <div class="mb-2">
+                    <input type="text" name="judul" class="form-control" placeholder="Judul catatan" required>
+                </div>
 
-                                    <!-- Judul & Info -->
-                                    <div>
-                                        <h6 class="mb-1 fw-bold">
-                                            <?= htmlspecialchars($row['judul']) ?>
-                                        </h6>
+                <div class="mb-2">
+                    <textarea name="isi" class="form-control" placeholder="Isi catatan..." required rows="10"></textarea>
+                </div>
 
+                <button name="tambah" class="btn btn-primary">Simpan Catatan</button>
 
-                                        <small class="text-muted">
-                                            <?= date('d/m/Y H:i', strtotime($row['created_at'])) ?>
-                                        </small>
-
-                                        <!-- Isi -->
-                                        <p class="mt-2 mb-0" style="font-size: 13px;">
-                                            <?= nl2br(htmlspecialchars($row['isi'])) ?>
-                                        </p>
-                                    </div>
-
-                                    <!-- Tombol Aksi -->
-                                    <div class="text-end">
-                                        <a href="?hapus=<?= $row['id'] ?>"
-                                            class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Yakin hapus catatan ini?')">
-                                            Hapus
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="text-center text-muted mt-4">
-                        Belum ada catatan 😢
-                    </div>
-                <?php endif; ?>
-            </div>
+            </form>
         </div>
     </div>
 
