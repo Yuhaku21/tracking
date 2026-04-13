@@ -14,7 +14,7 @@ if (isset($_POST['tambah'])) {
     $stmt = $pdo->prepare("INSERT INTO catatan (user_id, dibuat_oleh, judul, isi) VALUES (?,?,?,?)");
     $stmt->execute([$user_id, $nama, $judul, $isi]);
 
-    header("Location: test-catatan.php");
+    header("Location: catatan.php");
     exit;
 }
 

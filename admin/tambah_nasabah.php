@@ -201,7 +201,7 @@ if (isset($_GET['hapus'])) {
             </table>
         </div>
 
-          <!--Footer-->
+        <!--Footer-->
         <footer class="text-center">
             <p style="color: grey;">Aplikasi Versi 1.0.0</p>
         </footer>
@@ -213,21 +213,56 @@ if (isset($_GET['hapus'])) {
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        var map = L.map('map').setView([-8.5830695, 116.3202515], 12); // Default Lombok
+        // 1. Inisialisasi Peta (Default ke Mataram)
+        var map = L.map('map').setView([-8.5830816, 116.0524079], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
+        // 2. Tambahkan Marker Input (Yang bisa digerakkan)
+        var inputMarker = L.marker([-8.5830816, 116.0524079], {
+            draggable: true
+        }).addTo(map);
+
+        inputMarker.bindPopup("Geser saya ke lokasi nasabah").openPopup();
+
+        // Fungsi untuk update nilai input di form
+        function updateFields(lat, lng) {
+            document.getElementsByName('latitude')[0].value = lat.toFixed(8);
+            document.getElementsByName('longitude')[0].value = lng.toFixed(8);
+        }
+
+        // Event: Saat marker digeser
+        inputMarker.on('dragend', function(e) {
+            var position = inputMarker.getLatLng();
+            updateFields(position.lat, position.lng);
+        });
+
+        // Event: Saat peta diklik
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            inputMarker.setLatLng([lat, lng]);
+            updateFields(lat, lng);
+        });
+
+        // 3. Menampilkan Data Nasabah dari Database (Marker Biru Statis)
         <?php
         $data = $pdo->query("SELECT * FROM nasabah");
         foreach ($data as $d) {
+            // Pastikan latitude dan longitude tidak kosong
+            if (!empty($d['latitude']) && !empty($d['longitude'])) {
         ?>
-            L.marker([<?= $d['latitude'] ?>, <?= $d['longitude'] ?>])
-                .addTo(map)
-                .bindPopup("<b><?= $d['nama'] ?></b><br><?= $d['alamat'] ?><br>Status: <?= $d['status'] ?>");
-        <?php } ?>
+                L.marker([<?= $d['latitude'] ?>, <?= $d['longitude'] ?>])
+                    .addTo(map)
+                    .bindPopup("<b><?= addslashes($d['nama']) ?></b><br><?= addslashes($d['alamat']) ?><br>Status: <?= $d['status'] ?>");
+        <?php
+            }
+        }
+        ?>
     </script>
 
 </body>

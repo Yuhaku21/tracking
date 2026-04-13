@@ -30,6 +30,20 @@ if (isset($_GET['hapus'])) {
     exit;
 }
 
+// EDIT CATATAN
+if (isset($_POST['edit'])) {
+
+    $id = $_POST['id'];
+    $judul = $_POST['judul'];
+    $isi = $_POST['isi'];
+
+    $stmt = $pdo->prepare("UPDATE catatan SET judul=?, isi=? WHERE id=? AND user_id=?");
+    $stmt->execute([$judul, $isi, $id, $user_id]);
+
+    header("Location: catatan.php");
+    exit;
+}
+
 // AMBIL DATA CATATAN USER
 $stmt = $pdo->prepare("SELECT * FROM catatan WHERE user_id=? ORDER BY created_at DESC");
 $stmt->execute([$user_id]);
@@ -100,14 +114,22 @@ $data = $stmt->fetchAll();
                                         </p>
                                     </div>
 
-                                    <!-- Tombol Aksi -->
+                                    <!-- Tombol Aksi Hapus-->
                                     <div class="text-end">
                                         <a href="?hapus=<?= $row['id'] ?>"
                                             class="btn btn-sm btn-danger"
                                             onclick="return confirm('Yakin hapus catatan ini?')">
                                             Hapus
                                         </a>
+                                        <button
+                                            class="btn btn-sm btn-warning"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editModal<?= $row['id'] ?>">
+                                            Edit
+                                        </button>
                                     </div>
+                                    <!-- Tombol Aksi Edit-->
+
                                 </div>
                             </div>
                         </div>
@@ -117,6 +139,45 @@ $data = $stmt->fetchAll();
                         Belum ada catatan 😢
                     </div>
                 <?php endif; ?>
+            </div>
+            <!-- Modal Edit -->
+            <div class="modal fade" id="editModal<?= $row['id'] ?>" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <form method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Catatan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Judul</label>
+                                    <input type="text" name="judul" class="form-control"
+                                        value="<?= htmlspecialchars($row['judul']) ?>" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Isi</label>
+                                    <textarea name="isi" class="form-control" rows="4" required><?= htmlspecialchars($row['isi']) ?></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" name="edit" class="btn btn-success">
+                                    Simpan Perubahan
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

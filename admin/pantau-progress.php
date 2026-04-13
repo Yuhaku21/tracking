@@ -1,8 +1,40 @@
 <?php
 require '../middleware/auth_admin.php';
-require '../config/koneksi.php'; // koneksi database
+require '../config/koneksi.php';
 
-// ================= AMBIL DATA PROGRESS =================
+// ================= FILTER =================
+$filter = $_GET['filter'] ?? '';
+$where = "";
+
+if ($filter == 'hari') {
+    $where = "AND DATE(progress_tugas.created_at) = CURDATE()";
+} elseif ($filter == 'bulan') {
+    $where = "AND progress_tugas.created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)";
+} elseif ($filter == '6bulan') {
+    $where = "AND progress_tugas.created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)";
+}
+
+// ================= PAGINATION =================
+$limit = 10;
+$page = $_GET['page'] ?? 1;
+
+if ($page < 1) $page = 1;
+
+$offset = ($page - 1) * $limit;
+
+// ================= HITUNG TOTAL DATA =================
+$stmtTotal = $pdo->prepare("
+    SELECT COUNT(*) 
+    FROM progress_tugas
+    WHERE 1=1
+    $where
+");
+
+$stmtTotal->execute();
+$totalData = $stmtTotal->fetchColumn();
+$totalPage = ceil($totalData / $limit);
+
+// ================= AMBIL DATA =================
 $stmt = $pdo->prepare("
     SELECT 
         progress_tugas.*,
@@ -11,12 +43,14 @@ $stmt = $pdo->prepare("
     FROM progress_tugas
     LEFT JOIN users ON progress_tugas.user_id = users.id
     LEFT JOIN nasabah ON progress_tugas.nasabah_id = nasabah.id
+    WHERE 1=1
+    $where
     ORDER BY progress_tugas.created_at DESC
+    LIMIT $limit OFFSET $offset
 ");
 
 $stmt->execute();
 $dataProgress = $stmt->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -80,7 +114,7 @@ $dataProgress = $stmt->fetchAll();
 
     <!-- Content -->
     <div class="container mt-4">
-      <h2><b>Pantau Progress</b></h2>
+        <h2><b>Pantau Progress</b></h2>
 
         <!--CTA Breadcrumb-->
         <nav aria-label="breadcrumb">
@@ -90,60 +124,142 @@ $dataProgress = $stmt->fetchAll();
             </ol>
         </nav>
 
+        <!--Filter-->
+        <form method="GET" class="mb-3">
+
+            <div class="d-flex align-items-end gap-2">
+
+                <!-- DROPDOWN -->
+                <div style="width: 150px;">
+                    <label class="form-label fw-semibold">Filter Waktu</label>
+                    <select name="filter" class="form-select" onchange="this.form.submit()"">
+                        <option value="">Semua</option>
+                        <option value=" hari" <?= ($filter == 'hari') ? 'selected' : '' ?>>Hari Ini</option>
+                        <option value="bulan" <?= ($filter == 'bulan') ? 'selected' : '' ?>>1 Bulan</option>
+                        <option value="6bulan" <?= ($filter == '6bulan') ? 'selected' : '' ?>>6 Bulan</option>
+                    </select>
+                </div>
+
+                <!-- BUTTON PDF -->
+                <div>
+                    <a href="cetak_pdf.php?filter=<?= $filter ?>" class="btn btn-danger">
+                        Cetak PDF <i class="bi bi-file-earmark-pdf"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </form>
+
+
+
         <div class="row">
-                <table class="table">
+            <table class="table">
 
-                    <thead class="table">
-                        <tr>
-                            <th>Nama User</th>
-                            <th>Nama Nasabah</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+                <thead class="table">
+                    <tr>
+                        <th>Petugas AO</th>
+                        <th>Nama Nasabah</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Bukti Kunjungan</th>
+                    </tr>
+                </thead>
 
-                    <tbody>
+                <tbody>
 
-                        <?php if ($dataProgress): ?>
+                    <?php if ($dataProgress): ?>
 
-                            <?php $no = 1;
-                            foreach ($dataProgress as $row): ?>
-
-                                <tr>
-                                    
-                                    <td><?= htmlspecialchars($row['nama_user'] ?? '-') ?></td>
-                                    <td><?= htmlspecialchars($row['nama_nasabah'] ?? '-') ?></td>
-                                    <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
-                                    <td>
-                                        <?php
-                                        $color = $row['status'] == 'selesai' ? 'success' : 'warning';
-                                        ?>
-                                        <span class="badge bg-<?= $color ?>">
-                                            <?= htmlspecialchars($row['status']) ?>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                            <?php endforeach; ?>
-
-                        <?php else: ?>
+                        <?php foreach ($dataProgress as $row): ?>
 
                             <tr>
-                                <td colspan="5" class="text-center">
-                                    Belum ada data progress
+
+                                <td><?= htmlspecialchars($row['nama_user'] ?? '-') ?></td>
+                                <td><?= htmlspecialchars($row['nama_nasabah'] ?? '-') ?></td>
+                                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
+
+                                <td>
+                                    <?php
+                                    $color = $row['status'] == 'selesai' ? 'success' : 'warning';
+                                    ?>
+                                    <span class="badge bg-<?= $color ?>">
+                                        <?= htmlspecialchars($row['status']) ?>
+                                    </span>
                                 </td>
+
+                                <!-- 🔥 KOLOM FOTO -->
+                                <td>
+                                    <?php if (!empty($row['foto'])): ?>
+
+                                        <img src="../assets/<?= htmlspecialchars($row['foto']) ?>"
+                                            width="80"
+                                            class="rounded shadow"
+                                            style="cursor:pointer"
+                                            onclick="previewGambar(this.src)">
+
+                                    <?php else: ?>
+                                        <span class="text-muted">Tidak ada</span>
+                                    <?php endif; ?>
+                                </td>
+
                             </tr>
 
-                        <?php endif; ?>
+                        <?php endforeach; ?>
 
-                    </tbody>
+                    <?php else: ?>
 
-                </table>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                Belum ada data progress
+                            </td>
+                        </tr>
+
+                    <?php endif; ?>
+
+                </tbody>
+
+            </table>
+            <!-- Modal Preview -->
+            <div class="modal fade" id="modalPreview" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark border-0">
+                        <div class="modal-body text-center">
+                            <img id="imgPreview" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- PAGINATION -->
+            <nav>
+                <ul class="pagination justify-content-center">
+
+                    <?php for ($i = 1; $i <= $totalPage; $i++): ?>
+
+                        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                            <a class="page-link"
+                                href="?page=<?= $i ?>&filter=<?= $filter ?>">
+                                <?= $i ?>
+                            </a>
+                        </li>
+
+                    <?php endfor; ?>
+
+                </ul>
+            </nav>
         </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function previewGambar(src) {
+        document.getElementById('imgPreview').src = src;
+
+        let modal = new bootstrap.Modal(document.getElementById('modalPreview'));
+        modal.show();
+    }
+</script>
 
 </body>
 

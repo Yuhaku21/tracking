@@ -16,6 +16,8 @@ require 'middleware/auth_staff.php';
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0d6efd" />
 </head>
 
 <body>
@@ -52,6 +54,7 @@ require 'middleware/auth_staff.php';
                 <h2>Halo Selamat Datang  </h2>
                 <h2 id="username"><?= $_SESSION['nama']; ?></h2>
                 <p>Jangan Lupa Tetap Semangat dan Bersyukur ya</p>
+                <button id="installBtn" class="btn btn-primary install-btn">Install</button>
             </div>
 
             <!-- MAP -->
