@@ -1,43 +1,54 @@
 <?php
-require '../config/koneksi.php';
+require '../middleware/auth_admin.php';
+include '../config/koneksi.php';
 
-/* =======================
-   PROSES TAMBAH STAFF
-======================= */
-if (isset($_POST['simpan'])) {
+// ================= HANDLE AJAX =================
+if (isset($_POST['action']) && $_POST['action'] == 'simpan') {
+
     $nama = $_POST['nama'];
-    $kode = $_POST['kode_kantor'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $lat = $_POST['lat'];
+    $lng = $_POST['lng'];
 
-    $sql = "INSERT INTO users (nama,kode_kantor,password,role) VALUES (?,?,?,'staff')";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nama, $kode, $password]);
+    $stmt = $pdo->prepare("INSERT INTO lokasi_nasabah (nama, latitude, longitude) VALUES (?, ?, ?)");
+    $stmt->execute([$nama, $lat, $lng]);
 
-    header("Location: tambah_staff.php");
+    echo "OK";
     exit;
 }
 
-/* =======================
-   AMBIL DATA STAFF
-======================= */
-$stmt = $pdo->query("SELECT * FROM users WHERE role='staff' ORDER BY id DESC");
-$staff = $stmt->fetchAll();
+if (isset($_GET['action']) && $_GET['action'] == 'get') {
+
+    $data = $pdo->query("SELECT * FROM lokasi_nasabah ORDER BY id DESC");
+
+    foreach ($data as $row) {
+        echo "<tr>
+            <td>{$row['nama']}</td>
+            <td>{$row['latitude']}</td>
+            <td>{$row['longitude']}</td>
+        </tr>";
+    }
+
+    exit;
+}
 ?>
 
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Tambah Staff</title>
+    <title>Tambah Nasabah</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <!--Link style-->
-    <link rel="stylesheet" href="style-dashboard-admin.css">
+    <link rel="stylesheet" href="../style-dashboard-admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-   <!-- Navbar Atas -->
+
+    <!--Navbar-->
+    <!-- Navbar Atas -->
     <nav class="navbar navbar-light bg-white shadow-sm px-3">
         <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
             <i class="bi bi-list"></i>
@@ -77,7 +88,7 @@ $staff = $stmt->fetchAll();
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="../admin/pantau-progress.php">
+                    <a class="nav-link" href="../admin/permintaan-lokasi.php">
                         <i class="bi bi-file-earmark-plus me-2"></i> Permintaan Lokasi
                     </a>
                 </li>
@@ -90,43 +101,51 @@ $staff = $stmt->fetchAll();
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
 
-        <h3 class="mb-4">Tambah Staff</h3>
-        <!-- FORM TAMBAH -->
-        <div class="card mb-4">
+        <!-- Table -->
+        <div class="card mt-4">
             <div class="card-body">
-                <form method="POST">
-                    <div class="mb-3">
-                        <label>Nama Staff</label>
-                        <input type="text" name="nama" class="form-control" required>
-                    </div>
+                <h5>Data Lokasi</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $data = $pdo->query("SELECT * FROM lokasi_nasabah ORDER BY id DESC");
 
-                    <div class="mb-3">
-                        <label>Kode Kantor</label>
-                        <input type="text" name="kode_kantor" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
-
-                    <button class="btn btn-primary" name="simpan">Tambah Staff</button>
-                    
-                </form>
+                        foreach ($data as $row) {
+                            echo "<tr>
+        <td>{$row['nama']}</td>
+        <td>{$row['latitude']}</td>
+        <td>{$row['longitude']}</td>
+    </tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-          <!--Footer-->
-        <footer class="fixed-bottom text-center">
+        <!--Footer-->
+        <footer class="text-center">
             <p style="color: grey;">Aplikasi Versi 1.0.0</p>
         </footer>
 
 
+
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>

@@ -104,8 +104,18 @@ $dataProgress = $stmt->fetchAll();
                     </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a class="nav-link" href="../admin/pantau-progress.php">
+                        <i class="bi bi-clock-history me-2"></i> Pantau Progres
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="../admin/pantau-progress.php">
+                        <i class="bi bi-file-earmark-plus me-2"></i> Permintaan Lokasi
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a class="nav-link" href="../auth/logout.php">
-                        <i class="bi bi-box-arrow-left"></i> Logout
+                        <i class="bi bi-box-arrow-left me-2"></i> Logout
                     </a>
                 </li>
             </ul>

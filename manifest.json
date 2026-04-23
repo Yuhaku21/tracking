@@ -1,7 +1,7 @@
 {
-  "name": "Mindora",
-  "short_name": "Mindora",
-  "start_url": "/",
+  "name": "AO Tracking",
+  "short_name": "AO",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d6efd",
@@ -14,19 +14,6 @@
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "screenshots/homepage-wide.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "screenshots/homepage-mobile.png",
-      "sizes": "360x640",
       "type": "image/png"
     }
   ]

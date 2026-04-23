@@ -51,7 +51,7 @@ require 'middleware/auth_staff.php';
             </div>
 
             <div class="welcome">
-                <h2>Halo Selamat Datang  </h2>
+                <h2>Halo Selamat Datang </h2>
                 <h2 id="username"><?= $_SESSION['nama']; ?></h2>
                 <p>Jangan Lupa Tetap Semangat dan Bersyukur ya</p>
                 <button id="installBtn" class="btn btn-primary install-btn">Install</button>
@@ -77,10 +77,10 @@ require 'middleware/auth_staff.php';
                     </div>
                 </a>
 
-                <a href="../tracking/staff/catatan.php" style="text-decoration: none;">
+                <a href="../tracking/alat/alat.php" style="text-decoration: none;">
                     <div class="menu-item">
-                        <p style="font-size: 30px;">📌</p>
-                        <p>Catatan</p>
+                        <p style="font-size: 30px;">🛠</p>
+                        <p>Alat</p>
                     </div>
                 </a>
 
@@ -101,6 +101,53 @@ require 'middleware/auth_staff.php';
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    
+    <!-- REGISTER SERVICE WORKER -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(() => console.log("Service Worker Registered"))
+                .catch(err => console.log("SW Error:", err));
+        }
+    </script>
+    <script>
+        let deferredPrompt;
+        const installBtn = document.getElementById("installBtn");
+
+        // Sembunyikan tombol dulu
+        installBtn.style.display = "none";
+
+        // Tangkap event install
+        window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Tampilkan tombol install
+            installBtn.style.display = "inline-block";
+        });
+
+        // Saat tombol diklik
+        installBtn.addEventListener("click", async () => {
+            if (!deferredPrompt) {
+                alert("Install belum tersedia di browser ini");
+                return;
+            }
+
+            deferredPrompt.prompt();
+
+            const {
+                outcome
+            } = await deferredPrompt.userChoice;
+
+            if (outcome === "accepted") {
+                console.log("User install aplikasi");
+            } else {
+                console.log("User batal install");
+            }
+
+            deferredPrompt = null;
+        });
+    </script>
 
 </body>
 

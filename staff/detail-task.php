@@ -67,8 +67,8 @@ if (isset($_POST['selesai'])) {
         ]);
 
         echo "<script>
-            localStorage.setItem('success', '1');
-            window.location.href = window.location.href;
+        localStorage.setItem('success', '1');
+        window.location.href = 'task.php';
         </script>";
         exit;
     }
@@ -257,9 +257,25 @@ $progress = $stmt->fetchAll();
     </div>
 
     <!-- JS -->
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            let success = localStorage.getItem('success');
+
+            if (success === '1') {
+                let modal = new bootstrap.Modal(document.getElementById('modalSukses'));
+                modal.show();
+
+                // hapus biar tidak muncul lagi saat refresh
+                localStorage.removeItem('success');
+            }
+
+        });
+    </script>
     <script>
         let video = document.getElementById('video');
         let currentStream = null;

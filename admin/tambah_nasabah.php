@@ -48,12 +48,14 @@ if (isset($_GET['hapus'])) {
 <body class="bg-light">
 
     <!--Navbar-->
-    <!--Navbar-->
+   <!-- Navbar Atas -->
     <nav class="navbar navbar-light bg-white shadow-sm px-3">
         <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
             <i class="bi bi-list"></i>
         </button>
-        <span class="fw-bold">Dashboard Admin</span>
+        <span class="fw-bold">
+            <p>Selamat datang <?= $_SESSION['nama']; ?></p>
+        </span>
     </nav>
 
     <!-- Sidebar Offcanvas -->
@@ -81,8 +83,18 @@ if (isset($_GET['hapus'])) {
                     </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a class="nav-link" href="../admin/pantau-progress.php">
+                        <i class="bi bi-clock-history me-2"></i> Pantau Progres
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="../admin/pantau-progress.php">
+                        <i class="bi bi-file-earmark-plus me-2"></i> Permintaan Lokasi
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a class="nav-link" href="../auth/logout.php">
-                        <i class="bi bi-box-arrow-left"></i> Logout
+                        <i class="bi bi-box-arrow-left me-2"></i> Logout
                     </a>
                 </li>
             </ul>
